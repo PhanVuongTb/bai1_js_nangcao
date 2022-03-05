@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "fullname": "vuong11111",
+      "username": "phan vuong",
+      "email": "admin@gmail.com",
+      "groupId": "3",
+      "id": 1
+    }
+  ],
+  "groups": [
+    {
+      "name": "nhóm 1",
+      "id": 1
+    },
+    {
+      "name": "nhóm 2",
+      "id": 2
+    },
+    {
+      "name": "nhóm 3",
+      "id": 3
+    },
+    {
+      "name": "nhóm 4",
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="mb-3">
+                <label for="" class="form-label">Fullname</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" aria-describedby="fullname">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" aria-describedby="username">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="email">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Group name</label>
+                <select name="group" id="group"></select>
+            </div>
+            <button type="button" onclick="addSave()" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+    <script>
+        function addSave() {
+            fullname = document.querySelector("#fullname").value;
+            username = document.querySelector("#username").value;
+            email = document.querySelector("#email").value;
+            group = document.querySelector("#group").value;
+
+            otp = {
+                url: "http://localhost:3000/users",
+                method: "post",
+                data: {
+                    fullname: fullname,
+                    username: username,
+                    email: email,
+                    groupId: group
+                }
+            }
+            axios(otp)
+                .then(function (res) {
+                    alert("Đã thêm thành công!");
+                    document.location = "list.html";
+                })
+        }
+        var url = "http://localhost:3000/groups";
+
+        fetch(url, {
+            method: "GET"
+        }).then(function (res) {
+            return res.json();
+        }).then(function (data) {
+            console.log(data);
+            group = data.map(a => {
+                return /*html*/ `<option value="${a.id}">${a.name}</option>`
+            })
+            document.querySelector("#group").innerHTML += group;
+            console.log(group);
+        })
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
